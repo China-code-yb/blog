@@ -1,0 +1,23 @@
+// Grade.findOne({
+    //     // 同时匹配两个条件
+    //     major:req.body.major, //精确匹配 major
+    //     classroom:req.body.classroom, //精确匹配 classroom
+    // })
+
+    // Grade.findOne({
+    //     // 满足一个条件即可
+    //     $or:[
+    //         {major:req.body.major},
+    //         {classroom:req.body.classroom}
+    //     ]
+    // })
+
+    Grade.findOne({
+        // 多条件模糊查询
+        $or:[  
+            {major:{$regex:req.body.major,$options:'$i'}}, // /JAVA/i
+            {classroom:{$regex:req.body.classroom,$options:'$i'}}
+        ]
+    }).exec((err,data)=>{
+        console.log(data);
+    });

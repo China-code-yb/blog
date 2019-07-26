@@ -1,0 +1,91 @@
+{{include './header.html'}}
+<div class="main">
+    <div class="side">
+        <p>留言</p>
+    </div>
+
+
+    <div style="width: 100%; border-bottom:1px solid #333;padding: 20px 20px;">
+        <h3>{{data.title}}</h3> <br>
+        <br>
+        作者: <a href="/authorInfo?name={{data.athuor}}">{{data.athuor}}</a> | 日期: {{data.date}} |标签:{{data.tag.join(',')}}
+        <br>
+        <br>
+        <p style=" width: 100%;font-size: 14px;">{{data.article}}</p>
+        <br>
+        阅读:{{data.count}}次 | 回复: {{data.reply.length}}
+
+        {{if sesuser}}
+        {{if data.athuor==sesuser.username}}
+        <br>
+        <br>
+        <a href="/redact?id={{data._id}}">编辑</a>&emsp;|&emsp;<a class="del" href="/del?id={{data._id}}">删除</a>
+        {{/if}}
+        {{/if}}
+
+    </div>
+
+
+    {{if sesuser}}
+
+    {{each data.reply f i}}
+    <div style="padding: 20px 30px">
+        <a style="color: green" href="/authorInfo?name={{f.answerman}}">{{f.answerman}}</a> 回复于 {{f.answertime}} <br>
+        <br>
+        {{f.answertxt}}
+    </div>
+
+    {{/each}}
+    <br>
+    <h3>评论:</h3>
+
+    <form action="/answer" style="width: 100%;padding: 20px 20px;">
+        <input style="display: none" type="text" name="id" value="{{data._id}}">
+        <textarea name="answer" id="" style="width: 100%;" rows="10" required></textarea>
+        <br>
+        <button type="submit" style="width: 70px;height: 40px;">留言</button>
+    </form>
+    {{/if}}
+
+</div>
+
+<!-- 遮罩层 -->
+<div class="forcover">
+    <!-- 登录 -->
+    <div class="loaddiv">
+        <form action="/load" method="POST">
+            用户名:<input type="text" name="username"> <br>
+            密码: <input type="text" name="password"> <br>
+            <button type="submit" class="btnload">登录</button>
+            <br>
+            <a href="javascript:;" class="enjtxt">还没有账号？点击创建</a>
+        </form>
+    </div>
+
+    <!-- 注册 -->
+    <div class="enjdiv">
+        <form action="/enj" method="POST">
+            用户名:<input class="user" type="text" name="username" required> <br>
+            密码: <input class="password" type="text" name="password" required> <br>
+            确认密码: <input class="conpassword" type="text" name="conpassword" required> <br>
+            <button type="submit" class="btnenj">注册</button>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    var del = document.querySelector('.del')
+    del.onclick = function(ev){
+
+        var a = confirm('是否删除该博文?')
+        if(!a){
+            console.log('取消删除')
+            ev.preventDefault()
+        }
+        else{
+            alert('删除成功！')
+        }
+    }
+</script>
+{{include './footer.html'}}

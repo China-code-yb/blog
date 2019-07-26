@@ -1,0 +1,41 @@
+{{include './header.html'}}
+
+    <div class="main">
+        <div class="side">
+            <p>存档</p>
+        </div>
+        {{if data}}
+        <ul style="padding: 20px 20px;">
+            <h3>2019年</h3>
+            {{each data f i}}
+            <li><a href="/reply?id={{f._id}}">{{f.title}}</a></li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </div>
+
+    <!-- 遮罩层 -->
+    <div class="forcover">
+        <!-- 登录 -->
+        <div class="loaddiv">
+            <form action="/load" method="POST">
+                用户名:<input type="text" name="username"> <br>
+                密码: <input type="text" name="password"> <br>
+                <button type="submit" class="btnload">登录</button>
+                <br>
+                <a href="javascript:;" class="enjtxt">还没有账号？点击创建</a>
+            </form>
+        </div>
+
+        <!-- 注册 -->
+        <div class="enjdiv">
+            <form action="/enj" method="POST">
+                用户名:<input class="user" type="text" name="username" required> <br>
+                密码: <input class="password" type="text" name="password" required> <br>
+                确认密码: <input class="conpassword" type="text" name="conpassword" required> <br>
+                <button type="submit" class="btnenj">注册</button>
+            </form>
+        </div>
+
+    </div>
+{{include './footer.html'}}

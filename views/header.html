@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <meta name="author" content="杨斌">
+    <title></title>
+    <link rel="stylesheet" href="/blog.css">
+
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="out">
+        <nav>
+            <ul class="nav-ul">
+                <li>BLOG</li>
+                <li class="list"><a href="/">首页</a></li>
+                <li class="list"><a href="/memery">存档</a></li>
+                <li class="list"><a href="/mark">标签</a></li>
+                <li class="list"><a href="/fabu">发布</a></li>
+            </ul>
+
+            <div class="load" style="width: 336px;" >
+                <form action="/search">
+                    <input type="text" name="searchtxt" placeholder="搜索" class="input">
+                </form>
+                    
+
+                {{if sesuser}}
+                    <a style="text-decoration: none;color:green;" href="/logout">退出登录</a>
+                    <a href="/perInfo" style="font-size: 14px;color:#666" class="user">{{sesuser.username}}</a>
+                    <img width="50" height="50" style="border-radius: 50%" src="{{sesuser.headerurl}}" alt="">
+                {{else}}
+                
+                <a href="javascript:;" class="onload">登录</a>
+                <a href="javascript:;" class="enj">注册</a>
+                {{/if}}
+
+                {{if error}}
+                {{error}}
+                {{/if}}
+            </div>
+        </nav>
+
+    </div>

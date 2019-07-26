@@ -1,0 +1,19 @@
+{{include './header.html'}}
+
+<div class="main">
+    <div class="side">
+        <p>空间</p>
+    </div>
+
+    <h1>{{data[0].athuor}}的个人空间</h1>
+    发表过的文章: <br>
+    <ul style="padding: 40px 40px;">
+        {{each data f i}}
+        <li><a href="/reply?id={{f._id}}">{{f.title}}</a></li>
+        {{/each}}
+
+    </ul>
+
+</div>
+
+{{include './footer.html'}}

@@ -1,0 +1,63 @@
+{{include './header.html'}}
+    <div class="main">
+        <div class="side">
+            <p>首页</p>
+        </div>
+
+        {{each data f i}}
+
+        <div style="width: 100%; border-bottom:1px dashed #333;padding: 20px 20px;">
+            <a href="/reply?id={{f._id}}">{{f.title}}</a> <br>
+            <br>
+            作者: <a href="/authorInfo?name={{f.athuor}}">{{f.athuor}}</a> | 日期: {{f.date}} |标签: <a style="color: green" href="">{{f.tag.toString()}}</a> 
+            <br>
+            <br>
+            <a href="/reply?id={{f._id}}" style="text-decoration: none; display: block; width: 300px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;color: green;font-size: 14px;">{{f.article}}</a>
+            <br>
+            阅读:{{f.count}}次 | 回复: {{f.reply.length}}
+        </div>
+
+        {{/each}}
+
+        {{if data.length>0 }}
+          <div id="page">    
+                {{if page!=1}}
+                <a href="/?page={{page-1}}">上一页</a>
+                {{/if}}
+               
+                <span>第{{page}}/{{allPages}}页</span>
+            
+                {{if page!==allPages}}
+                <a href="/?page={{page+1}}">下一页</a>
+                {{/if}}
+            </div>
+
+    {{/if}}
+
+    </div>
+
+    <!-- 遮罩层 -->
+    <div class="forcover">
+        <!-- 登录 -->
+        <div class="loaddiv">
+            <form action="/load" method="POST">
+                用户名:<input type="text" name="username"> <br>
+                密码: <input type="text" name="password"> <br>
+                <button type="submit" class="btnload">登录</button>
+                <br>
+                <a href="javascript:;" class="enjtxt">还没有账号？点击创建</a>
+            </form>
+        </div>
+
+        <!-- 注册 -->
+        <div class="enjdiv">
+            <form action="/enj" method="POST">
+                用户名:<input class="user" type="text" name="username" required> <br>
+                密码: <input class="password" type="text" name="password" required> <br>
+                确认密码: <input class="conpassword" type="text" name="conpassword" required> <br>
+                <button type="submit" class="btnenj">注册</button>
+            </form>
+        </div>
+
+    </div>
+{{include './footer.html'}}

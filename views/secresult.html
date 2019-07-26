@@ -1,0 +1,14 @@
+{{include './header.html'}}
+<div class="main">
+    <h3 style="padding: 10px 10px;">搜索到{{data.length}}篇和 <span style="color: green;">"{{a}}"</span> 相关的文章</h3>
+    <ul style="padding: 30px 30px">
+        {{each data f i}}
+        <li><a href="/reply?id={{f._id}}">{{f.title}}</a></li>
+        {{/each}}
+    </ul>
+
+    <div class="side">
+        <p>结果</p>
+    </div>
+</div>
+{{include './footer.html'}}

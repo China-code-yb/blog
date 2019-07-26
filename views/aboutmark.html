@@ -1,0 +1,15 @@
+{{include './header.html'}}
+<div class="main">
+
+    
+    <ul style="padding: 20px 20px">
+        {{each aboutMark f i}}
+        <li><a href="/reply?id={{f._id}}">{{f.title}}</a></li>
+        {{/each}}
+    </ul>
+    
+    <div class="side">
+            <p>相关</p>
+        </div>
+</div>
+{{include './footer.html'}}
